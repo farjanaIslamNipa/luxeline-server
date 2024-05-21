@@ -8,6 +8,8 @@ export type TProduct = {
   currentPrice?: number;
   isFlashSale?: boolean;
   isTrending?: boolean;
+  isExclusive?: boolean;
+  isWinterSale?: boolean;
   rating?: number;
   description: string;
   isDeleted?: boolean;

@@ -31,6 +31,14 @@ const productSchema = new Schema<TProduct>({
     type: Boolean,
     default: false
   },
+  isExclusive: {
+    type: Boolean,
+    default: false
+  },
+  isWinterSale: {
+    type: Boolean,
+    default: false
+  },
   description: {
     type: String
   },
