@@ -1,17 +1,40 @@
 /* eslint-disable no-console */
 
+import axios from "axios";
 import { TTask } from "./task.interface";
 import { Task } from "./task.model";
 
 //CREATE COURSE
 const createTaskIntoDB = async (payload: TTask) => {
-  const result = await Task.create(payload);
+  const token = payload.recaptchaToken
+  if(token){
+    try {
+      const response = await axios.post(`https://www.google.com/recaptcha/api/siteverify`, null, {
+        params: {
+          secret: '6LcSTfYpAAAAALnzALNMDebpJq8evZhPaHCoDmlt',
+          response: token,
+        },
+      });
+  
+      const data = response.data;
+      if (data.success) {
+        const result = await Task.create(payload);
+        return result;
+        
+      } else {
+        throw new Error("You are detected robot!!")
+  
+      }
+    } catch (error) {
+      console.log(error, 'err')
+    }
+  }
 
-  return result;
+
 };
 
 // GET ALL COURSES
-const getAllTasksFromDB = async (query: Record<string, unknown>) => {
+const getAllTasksFromDB = async () => {
 
   const result = await Task.find();
 

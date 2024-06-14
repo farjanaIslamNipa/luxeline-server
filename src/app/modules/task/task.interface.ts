@@ -1,16 +1,18 @@
 
 
 export type TTask = {
-    taskName: string;
-    completionTime: 'On Time' | 'Before Date' | 'I am Flexible';
+    title: string;
+    deadline: string;
+    needCertainTime: boolean;
     specificTime: 'Morning' | 'Midday' | 'Afternoon' | 'Evening';
-    isRemovable: boolean;
+    isRemoval: string;
+    taskType?: 'In Person' | 'Online';
     pickupPoint?: string;
     dropOffPoint?: string;
-    taskType?: 'In Person' | 'Online';
-    taskAddress?: string;
-    movingType?: 'A few items' | 'Apartment' | 'House';
+    address?: string;
+    movingItem?: 'A few items' | 'Apartment' | 'House';
     isStairs?: 'No' | 'At Pickup' | 'At Delivery' | 'Both Places';
-    movingItemDetails: string;
-    offeredBudget: number;
+    taskDetails: string;
+    suggestedBudget: number;
+    recaptchaToken: string;
 }

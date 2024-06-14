@@ -1,19 +1,20 @@
 import { Schema, model } from 'mongoose';
 import { TTask } from './task.interface';
 
+
 const taskSchema = new Schema<TTask>({
-    taskName: {
+    title: {
         type: String,
         required: true,
         trim: true
     },
-    completionTime: {
+    deadline: {
         type: String,
-        required: true,
-        enum: {
-            values: ['On Time', 'Before Date', 'I am Flexible'],
-            message: '{VALUE} is not valid'
-        }
+        required: true
+    },
+    needCertainTime:{
+        type: Boolean,
+        required: true
     },
     specificTime: {
         type: String,
@@ -23,8 +24,8 @@ const taskSchema = new Schema<TTask>({
             message: '{VALUE} is not valid'
         }
     },
-    isRemovable: {
-        type: Boolean,
+    isRemoval: {
+        type: String,
         required: true,
     },
     pickupPoint: {
@@ -40,10 +41,10 @@ const taskSchema = new Schema<TTask>({
             message: '{VALUE} is not valid, should be in person | online'
         }
     },
-    taskAddress: {
+    address: {
         type: String
     },
-    movingType: {
+    movingItem: {
         type: String,
         enum: {
             values: ['A few items', 'Apartment', 'House'],
@@ -57,11 +58,15 @@ const taskSchema = new Schema<TTask>({
         message: '{VALUE} is not a valid stair type'
        } 
     },
-    movingItemDetails: {
+    taskDetails: {
         type: String,
     },
-    offeredBudget: {
+    suggestedBudget: {
         type: Number
+    },
+    recaptchaToken: {
+        type: String,
+        required: true
     }
 }, {timestamps: true})
 
